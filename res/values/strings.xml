@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hijri Clock</string>
+    <string name="title_activity_hijri__clock">Hijri Clock</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="show_date">Show Date</string>
+    <string name="show_month">Show Month</string>
+    <string name="show_year">Show Year</string>
+    <string name="show_month_as_number">Show Month as Number</string>
+    <string name="show_slash">Show / between day, month and year</string>
+    <string name="show_before_clock">Show before Clock</string>
+    <string name="apply">Apply</string>
+    <string name="xda">XDA Thread</string>
+    <string name="more">More Xposed Mods</string>
+
+</resources>
