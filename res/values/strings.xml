@@ -13,5 +13,10 @@
     <string name="apply">Apply</string>
     <string name="xda">XDA Thread</string>
     <string name="more">More Xposed Mods</string>
+    <string name="offset">Define an offset to push the date forward. Use negative numbers to push it back</string>
+    <string name="day_offset">Day</string>
+    <string name="month_offset">Month</string>
+    <string name="arabic_words">Use arabic for text</string>
+    <string name="arabic_numbers">Use Arabic for numbers</string>
 
 </resources>

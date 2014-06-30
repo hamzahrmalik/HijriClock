@@ -12,9 +12,11 @@ import java.util.Calendar;
 
 public final class HijriCalendar {
 
-public final static String[] WEEKDAYS = { "", "Ahad", "Ithnin", "Thulatha", "Arbaa", "Khams", "Jumuah", "Sabt" };
+	public final static String[] WEEKDAYS = { "", "Ahad", "Ithnin", "Thulatha", "Arbaa", "Khams", "Jumuah", "Sabt" };
 	public final static String[] MONTHS = { "", "Muharram", "Safar", "Rabiul Awwal", "Rabiul Akhir",
 		"Jumadal Ula", "Jumadal Akhira", "Rajab", "Shaaban", "Ramadhan", "Shawwal", "Dhulqaada", "Dhulhijja" };
+	public final static String[] MONTHS_ARABIC = { "", "المحرّم", "صفر", "ربيع الأوّل", "ربيع الآخ",
+		"جمادى الأولى", "جمادى الآخرة", "رجب", "شعبان", "رمضان", "شوّال", "ذو القعدة", "ذو الحجّة" };
 
 	public final static double[] UMMALQURA_DAT = {
 		28607,28636,28665,28695,28724,28754,28783,28813,28843,28872,28901,28931,28960,28990,29019,29049,29078,29108,29137,29167,
@@ -159,29 +161,110 @@ public final static String[] WEEKDAYS = { "", "Ahad", "Ithnin", "Thulatha", "Arb
 		return new int[]{ (int)weekday, (int)day, (int)month, (int)year };
 	}
 
-	public static String getDate(Calendar cal, boolean date, boolean month, boolean year, boolean number_month, boolean slashes) {
+	public static String getDate(Calendar cal, boolean date, boolean month, boolean year, boolean number_month, boolean slashes, boolean arabic_text, boolean arabic_numbers, int offset_day, int offset_month) {
 		int[] dt = ummalQuraCalendar(cal);
 		String s = "";
 		if(date){
 			//if(slashes) s = s + "/";
-			s = s + " " + dt[1];
+			s = s + " " + getDate(dt, arabic_numbers, offset_day);
 		}
 		
 		if(month){
 			if(slashes&&date) s = s + "/";
 			else s = s + " ";
-			if(number_month)
-				s = s + dt[2];
-			else
-				s = s + MONTHS[dt[2]];
+			s = s + getMonth(dt, number_month, offset_month, arabic_numbers, arabic_text);
 		}
 		
 		if(year){
 			if(slashes&&(date||month)) s = s + "/";
 			else s = s + " ";
-			s = s + dt[3];
+			s = s + getYear(dt, arabic_numbers);
 		}
 		
 		return s;
+	}
+	
+	public static String getDate(int[] dt, boolean arabic, int offset){
+		String s = "" + (dt[1] + offset);
+		if(arabic)
+			s = convert("" + (dt[1] + offset));
+		return s;
+	}
+	
+	public static String getMonth(int[] dt, boolean number, int offset, boolean arabic_numbers, boolean arabic_text){
+		String s = "";
+		
+		if(number){
+			if(arabic_numbers)
+				s = convert("" + (dt[2] + offset));
+			else
+				s = "" + (dt[2] + offset);
+		}
+		else{
+			if(arabic_text)
+				s = MONTHS_ARABIC[dt[2] + offset];
+			else
+				s = MONTHS[dt[2] + offset];
+		}
+		
+		return s;
+	}
+	
+	public static String getYear(int[] dt, boolean arabic){
+		String s = "";
+		
+		if(arabic)
+			s = convert("" + dt[3]);
+		else
+			s = "" + dt[3];
+		
+		return s;
+	}
+	
+	public static String convert(String s){
+		String arabic = "";
+		
+		int length = s.length();
+		
+		//int[] nums = new int[length];
+		//String [] arabicNums = new String[length];
+		
+		char[] chars = s.toCharArray();
+		
+		int i = 0;
+		while(i<length){
+			System.out.println(chars[i] + ".");
+			arabic = arabic + arabicFromEnglish(Character.getNumericValue(chars[i]));
+			i++;
+		}
+		
+		return arabic;
+	}
+	
+	public static String arabicFromEnglish(int english){
+		
+		String arabic = "ER"; //this means some error occured
+		if(english == 1)
+			arabic = "١";
+		else if(english == 2)
+			arabic = "٢";
+		else if(english == 3)
+			arabic = "٣";
+		else if(english == 4)
+			arabic = "٤";
+		else if(english == 5)
+			arabic = "٥";
+		else if(english == 6)
+			arabic = "٦";
+		else if(english == 7)
+			arabic = "٧";
+		else if(english == 8)
+			arabic = "٨";
+		else if(english == 9)
+			arabic = "٩";
+		else if(english == 0)
+			arabic = "٠";
+		System.out.print(arabic);
+		return arabic;
 	}
 }

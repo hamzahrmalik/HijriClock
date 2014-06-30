@@ -14,7 +14,8 @@ public class Main implements IXposedHookLoadPackage{
 	
 	@Override
 	public void handleLoadPackage(final LoadPackageParam lpparam) throws Throwable {
-		
+		if(!lpparam.packageName.equals("com.android.systemui"))
+			return;
 		XC_MethodHook hook = new XC_MethodHook(){
 			@Override
 			protected void afterHookedMethod(MethodHookParam param)
@@ -23,7 +24,11 @@ public class Main implements IXposedHookLoadPackage{
 				
 				TextView t = (TextView) param.thisObject;
 				
-				String date = HijriCalendar.getDate(null, pref.getBoolean(Keys.SHOW_DATE, true), pref.getBoolean(Keys.SHOW_MONTH, true), pref.getBoolean(Keys.SHOW_YEAR, true), pref.getBoolean(Keys.SHOW_MONTH_AS_NUMBER, false), pref.getBoolean(Keys.SHOW_SLASH, false));
+				String date = HijriCalendar.getDate(null, pref.getBoolean(Keys.SHOW_DATE, true),
+						pref.getBoolean(Keys.SHOW_MONTH, true), pref.getBoolean(Keys.SHOW_YEAR, true),
+						pref.getBoolean(Keys.SHOW_MONTH_AS_NUMBER, false), pref.getBoolean(Keys.SHOW_SLASH, false),
+						pref.getBoolean(Keys.USE_ARABIC_TEXT, false), pref.getBoolean(Keys.USE_ARABIC_NUMBERS, false),
+						pref.getInt(Keys.OFFSET_DAY, 0), pref.getInt(Keys.OFFSET_MONTH, 0));
 				
 				if(pref.getBoolean(Keys.SHOW_BEFORE_CLOCK, false)){
 					String orig = (String) t.getText();

@@ -1,64 +1,129 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="${packageName}.${activityClass}" >
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Hijri_Clock" >
 
-    <CheckBox
-        android:id="@+id/show_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_date" />
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1414dp"
+        android:orientation="vertical" >
 
-    <CheckBox
-        android:id="@+id/show_month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_month" />
+        <CheckBox
+            android:id="@+id/show_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_date" />
 
-    <CheckBox
-        android:id="@+id/show_year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_year" />
+        <CheckBox
+            android:id="@+id/show_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_month" />
 
-    <CheckBox
-        android:id="@+id/show_month_as_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_month_as_number" />
+        <CheckBox
+            android:id="@+id/show_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_year" />
 
-    <CheckBox
-        android:id="@+id/show_slash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_slash" />
+        <CheckBox
+            android:id="@+id/show_month_as_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_month_as_number" />
 
-    <CheckBox
-        android:id="@+id/show_before_clock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_before_clock" />
+        <CheckBox
+            android:id="@+id/show_slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_slash" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/apply" 
-        android:onClick="apply"/>
+        <CheckBox
+            android:id="@+id/show_before_clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_before_clock" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/xda"
-        android:onClick="xda" />
+        <CheckBox
+            android:id="@+id/use_arabic_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/arabic_words" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/more"
-        android:onClick="more" />
+        <CheckBox
+            android:id="@+id/use_arabic_numbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/arabic_numbers" />
 
-</TableLayout>
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/offset"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_offset" />
+
+            <EditText
+                android:id="@+id/offset_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberSigned" >
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/month_offset" />
+
+            <EditText
+                android:id="@+id/offset_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberSigned" />
+        </TableRow>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="apply"
+            android:text="@string/apply" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="xda"
+            android:text="@string/xda" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="more"
+            android:text="@string/more" />
+    </TableLayout>
+</ScrollView>
