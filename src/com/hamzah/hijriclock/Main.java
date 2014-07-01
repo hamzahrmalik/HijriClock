@@ -12,6 +12,7 @@ public class Main implements IXposedHookLoadPackage{
 	
 	XSharedPreferences pref;
 	
+	
 	@Override
 	public void handleLoadPackage(final LoadPackageParam lpparam) throws Throwable {
 		if(!lpparam.packageName.equals("com.android.systemui"))
@@ -23,7 +24,7 @@ public class Main implements IXposedHookLoadPackage{
 				pref = new XSharedPreferences(this.getClass().getPackage().getName(), Keys.PREF);
 				
 				TextView t = (TextView) param.thisObject;
-				
+				t.setSingleLine(false);
 				String date = HijriCalendar.getDate(null, pref.getBoolean(Keys.SHOW_DATE, true),
 						pref.getBoolean(Keys.SHOW_MONTH, true), pref.getBoolean(Keys.SHOW_YEAR, true),
 						pref.getBoolean(Keys.SHOW_MONTH_AS_NUMBER, false), pref.getBoolean(Keys.SHOW_SLASH, false),
@@ -32,18 +33,18 @@ public class Main implements IXposedHookLoadPackage{
 				
 				if(pref.getBoolean(Keys.SHOW_BEFORE_CLOCK, false)){
 					String orig = (String) t.getText();
-					t.setText(date + " " + orig);
+					t.setText(date+"\n" + orig);
 				}
 				else
-					t.append(date);
+					t.append("\n"+date);
 			}
 		};
 		
 		if(Build.VERSION.SDK_INT>=14)
-			findAndHookMethod("com.android.systemui.statusbar.policy.Clock", lpparam.classLoader, "updateClock", hook);
+			findAndHookMethod("com.android.systemui.statusbar.policy.DateView", lpparam.classLoader, "updateClock", hook);
 	       
 	    else if(Build.VERSION.SDK_INT<=13)
-	    	findAndHookMethod("com.android.systemui.statusbar.Clock", lpparam.classLoader, "updateClock", hook);
+	    	findAndHookMethod("com.android.systemui.statusbar.DateView", lpparam.classLoader, "updateClock", hook);
 	}
  
 }
