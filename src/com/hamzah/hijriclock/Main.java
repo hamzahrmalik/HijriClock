@@ -11,6 +11,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 public class Main implements IXposedHookLoadPackage{
 	
 	XSharedPreferences pref;
+	String OldDate;
 	
 	@Override
 	public void handleLoadPackage(final LoadPackageParam lpparam) throws Throwable {
@@ -32,12 +33,12 @@ public class Main implements IXposedHookLoadPackage{
 						pref.getInt(Keys.OFFSET_DAY, 0), pref.getInt(Keys.OFFSET_MONTH, 0));
 				//cut the space at the start
 				date = date.substring(1);
-				
+				if(!date.equals(OldDate)){//Check if the date changed or not clear when set Before Clock
 				if(pref.getBoolean(Keys.SHOW_BEFORE_CLOCK, false)){
 					t.setText(date+"\n"+orig);					
 				}else{
 					t.setText(orig+"\n"+date);}
-			//	OldDate=date;}
+				OldDate=date;}
 			}
 			};
 			
@@ -48,7 +49,8 @@ public class Main implements IXposedHookLoadPackage{
 				pref = new XSharedPreferences(this.getClass().getPackage().getName(), Keys.PREF);
 				
 				TextView t = (TextView) param.thisObject;
-				
+				View parent =(View) t.getParent();
+				if(parent.getId()==2131230770){//Check if the parent is the status bar
 				String date = HijriCalendar.getDate(null, pref.getBoolean(Keys.SHOW_DATE, true),
 						pref.getBoolean(Keys.SHOW_MONTH, true), pref.getBoolean(Keys.SHOW_YEAR, true),
 						pref.getBoolean(Keys.SHOW_MONTH_AS_NUMBER, false), pref.getBoolean(Keys.SHOW_SLASH, false),
@@ -61,7 +63,7 @@ public class Main implements IXposedHookLoadPackage{
 				}
 				else
 					t.append(date);
-			}
+			}}
 			};
 		
 		if(Build.VERSION.SDK_INT>=14){
