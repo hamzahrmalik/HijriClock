@@ -3,6 +3,7 @@ package com.hamzah.hijriclock;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import android.os.Build;
 import android.widget.TextView;
+import android.view.View;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
