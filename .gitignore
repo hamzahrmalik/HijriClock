@@ -1,0 +1,4 @@
+*.log
+*.apk
+/bin/*
+/gen/*
