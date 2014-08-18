@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class Hijri_Clock extends Activity {
 	
-	CheckBox CB_show_date, CB_show_month, CB_show_year, CB_show_month_as_number, CB_show_slash, CB_show_before_clock, CB_arabic_text, CB_arabic_numbers;
+	CheckBox CB_show_date, CB_show_month, CB_show_year, CB_show_month_as_number, CB_show_slash, CB_show_before_clock, CB_arabic_text, CB_arabic_numbers, CB_show_in_SB;
 	EditText ET_offset_day, ET_offset_month;
 	
 	SharedPreferences pref;
@@ -38,6 +38,7 @@ public class Hijri_Clock extends Activity {
 		CB_show_before_clock = (CheckBox) findViewById(R.id.show_before_clock);
 		CB_arabic_text = (CheckBox) findViewById(R.id.use_arabic_text);
 		CB_arabic_numbers = (CheckBox) findViewById(R.id.use_arabic_numbers);
+		CB_show_in_SB = (CheckBox) findViewById(R.id.show_in_statusbar);
 		
 		ET_offset_day = (EditText) findViewById(R.id.offset_day);
 		ET_offset_month = (EditText) findViewById(R.id.offset_month);
@@ -56,6 +57,7 @@ public class Hijri_Clock extends Activity {
 		editor.putBoolean(Keys.SHOW_BEFORE_CLOCK, CB_show_before_clock.isChecked());
 		editor.putBoolean(Keys.USE_ARABIC_TEXT, CB_arabic_text.isChecked());
 		editor.putBoolean(Keys.USE_ARABIC_NUMBERS, CB_arabic_numbers.isChecked());
+		editor.putBoolean(Keys.SHOW_IN_STATUSBAR, CB_show_in_SB.isChecked());
 		
 		editor.putInt(Keys.OFFSET_DAY, Integer.parseInt(ET_offset_day.getText().toString()));
 		editor.putInt(Keys.OFFSET_MONTH, Integer.parseInt(ET_offset_month.getText().toString()));
@@ -76,6 +78,7 @@ public class Hijri_Clock extends Activity {
 		CB_show_before_clock.setChecked(pref.getBoolean(Keys.SHOW_BEFORE_CLOCK, false));
 		CB_arabic_text.setChecked(pref.getBoolean(Keys.USE_ARABIC_TEXT, false));
 		CB_arabic_numbers.setChecked(pref.getBoolean(Keys.USE_ARABIC_NUMBERS, false));
+		CB_show_in_SB.setChecked(pref.getBoolean(Keys.SHOW_IN_STATUSBAR, false));
 		
 		ET_offset_day.setText(Integer.toString(pref.getInt(Keys.OFFSET_DAY, 0)));
 		ET_offset_month.setText(Integer.toString(pref.getInt(Keys.OFFSET_MONTH, 0)));

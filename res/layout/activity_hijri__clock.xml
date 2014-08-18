@@ -59,6 +59,12 @@
             android:layout_height="wrap_content"
             android:text="@string/arabic_numbers" />
 
+        <CheckBox
+            android:id="@+id/show_in_statusbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_in_statubar" />
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"

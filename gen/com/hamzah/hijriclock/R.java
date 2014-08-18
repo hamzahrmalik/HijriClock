@@ -14,22 +14,23 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int button1=0x7f06000f;
-        public static final int button2=0x7f060010;
-        public static final int button3=0x7f060011;
-        public static final int offset_day=0x7f06000b;
-        public static final int offset_month=0x7f06000e;
+        public static final int button1=0x7f060010;
+        public static final int button2=0x7f060011;
+        public static final int button3=0x7f060012;
+        public static final int offset_day=0x7f06000c;
+        public static final int offset_month=0x7f06000f;
         public static final int show_before_clock=0x7f060005;
         public static final int show_date=0x7f060000;
+        public static final int show_in_statusbar=0x7f060008;
         public static final int show_month=0x7f060001;
         public static final int show_month_as_number=0x7f060003;
         public static final int show_slash=0x7f060004;
         public static final int show_year=0x7f060002;
-        public static final int tableRow1=0x7f060009;
-        public static final int tableRow2=0x7f06000c;
-        public static final int textView1=0x7f060008;
-        public static final int textView2=0x7f06000a;
-        public static final int textView3=0x7f06000d;
+        public static final int tableRow1=0x7f06000a;
+        public static final int tableRow2=0x7f06000d;
+        public static final int textView1=0x7f060009;
+        public static final int textView2=0x7f06000b;
+        public static final int textView3=0x7f06000e;
         public static final int use_arabic_numbers=0x7f060007;
         public static final int use_arabic_text=0x7f060006;
     }
@@ -48,6 +49,7 @@ public final class R {
         public static final int offset=0x7f04000c;
         public static final int show_before_clock=0x7f040008;
         public static final int show_date=0x7f040003;
+        public static final int show_in_statubar=0x7f040011;
         public static final int show_month=0x7f040004;
         public static final int show_month_as_number=0x7f040006;
         public static final int show_slash=0x7f040007;

@@ -12,6 +12,8 @@ public class Main implements IXposedHookLoadPackage{
 	
 	XSharedPreferences pref;
 	
+	String OldDate;
+	
 	@Override
 	public void handleLoadPackage(final LoadPackageParam lpparam) throws Throwable {
 		if(!lpparam.packageName.equals("com.android.systemui"))
@@ -33,11 +35,13 @@ public class Main implements IXposedHookLoadPackage{
 				//cut the space at the start
 				date = date.substring(1);
 				
-				if(pref.getBoolean(Keys.SHOW_BEFORE_CLOCK, false)){
-					t.setText(date+"\n"+orig);					
-				}else{
-					t.setText(orig+"\n"+date);}
-			//	OldDate=date;}
+				if (!date.equals(OldDate)) {// Check if the date changed or not
+					if (pref.getBoolean(Keys.SHOW_BEFORE_CLOCK, false))
+						t.setText(date + "\n" + orig);
+					else
+						t.setText(orig + "\n" + date);
+					OldDate = date;
+				}
 			}
 			};
 			
@@ -48,19 +52,20 @@ public class Main implements IXposedHookLoadPackage{
 				pref = new XSharedPreferences(this.getClass().getPackage().getName(), Keys.PREF);
 				
 				TextView t = (TextView) param.thisObject;
-				
 				String date = HijriCalendar.getDate(null, pref.getBoolean(Keys.SHOW_DATE, true),
 						pref.getBoolean(Keys.SHOW_MONTH, true), pref.getBoolean(Keys.SHOW_YEAR, true),
 						pref.getBoolean(Keys.SHOW_MONTH_AS_NUMBER, false), pref.getBoolean(Keys.SHOW_SLASH, false),
 						pref.getBoolean(Keys.USE_ARABIC_TEXT, false), pref.getBoolean(Keys.USE_ARABIC_NUMBERS, false),
 						pref.getInt(Keys.OFFSET_DAY, 0), pref.getInt(Keys.OFFSET_MONTH, 0));
-				
-				if(pref.getBoolean(Keys.SHOW_BEFORE_CLOCK, false)){
-					String orig = (String) t.getText();
-					t.setText(date + " " + orig);
+
+				if(pref.getBoolean(Keys.SHOW_IN_STATUSBAR, false)){
+					if(pref.getBoolean(Keys.SHOW_BEFORE_CLOCK, false)){
+						String orig = (String) t.getText();
+						t.setText(date + " " + orig);
+					}
+					else
+						t.append(date);
 				}
-				else
-					t.append(date);
 			}
 			};
 		

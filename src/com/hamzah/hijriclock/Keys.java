@@ -14,5 +14,6 @@ public class Keys {
 	public static final String USE_ARABIC_NUMBERS = "arabic_numbers";
 	public static final String OFFSET_DAY = "offset_day";
 	public static final String OFFSET_MONTH = "offset_month";
+	public static final String SHOW_IN_STATUSBAR = "show_in_statusbar";
 
 }
