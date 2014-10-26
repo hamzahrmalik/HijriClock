@@ -108,9 +108,9 @@ public final class HijriCalendar {
 		79399,79428,79458,79487,79517,79546,79576,79606,79635,79665,79695,79724,79753,79783,79812,79841,79871,79900,79930,79960,
 		79990 };
 
-	public static int[] ummalQuraCalendar(Calendar cal) {
+	public static int[] ummalQuraCalendar(Calendar cal,int offset_day) {
 		if (cal == null) cal = Calendar.getInstance();
-	
+		cal.add(Calendar.DAY_OF_MONTH, offset_day);
 		double day = cal.get(Calendar.DAY_OF_MONTH);
 		double month = cal.get(Calendar.MONTH);
 		double year = cal.get(Calendar.YEAR);
@@ -162,11 +162,11 @@ public final class HijriCalendar {
 	}
 
 	public static String getDate(Calendar cal, boolean date, boolean month, boolean year, boolean number_month, boolean slashes, boolean arabic_text, boolean arabic_numbers, int offset_day, int offset_month) {
-		int[] dt = ummalQuraCalendar(cal);
+		int[] dt = ummalQuraCalendar(cal,offset_day);
 		String s = "";
 		if(date){
 			//if(slashes) s = s + "/";
-			s = s + " " + getDate(dt, arabic_numbers, offset_day);
+			s = s + " " + getDate(dt, arabic_numbers);
 		}
 		
 		if(month){
@@ -184,10 +184,10 @@ public final class HijriCalendar {
 		return s;
 	}
 	
-	public static String getDate(int[] dt, boolean arabic, int offset){
-		String s = "" + (dt[1] + offset);
+	public static String getDate(int[] dt, boolean arabic){
+		String s = "" + (dt[1]);
 		if(arabic)
-			s = convert("" + (dt[1] + offset));
+			s = convert("" + (dt[1]));
 		return s;
 	}
 	
