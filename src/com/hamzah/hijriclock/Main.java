@@ -2,7 +2,6 @@ package com.hamzah.hijriclock;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -13,9 +12,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 public class Main implements IXposedHookLoadPackage{
 	
 	XSharedPreferences pref;
-	
-	String OldDate;
-	
+		
 	@Override
 	public void handleLoadPackage(final LoadPackageParam lpparam) throws Throwable {
 		if(!lpparam.packageName.equals("com.android.systemui"))
@@ -37,12 +34,11 @@ public class Main implements IXposedHookLoadPackage{
 				//cut the space at the start
 				date = date.substring(1);
 				
-				if (!date.equals(OldDate)) {// Check if the date changed or not
+				if (!orig.contains(date)) {// Check if the date changed or not
 					if (pref.getBoolean(Keys.SHOW_BEFORE_CLOCK, false))
 						t.setText(date + "\n" + orig);
 					else
 						t.setText(orig + "\n" + date);
-					OldDate = date;
 				}
 			}
 			};
@@ -56,8 +52,8 @@ public class Main implements IXposedHookLoadPackage{
 				TextView t = (TextView) param.thisObject;
 				int parentid=((View) t.getParent()).getId();//Get the parent ID either the Status bar or the notification panel
 				int statusid=t.getContext().getResources().getIdentifier("system_icon_area", "id", "com.android.systemui");//Get the status bar ID
-				String ids="parent:"+parentid+" status:"+statusid;//logging
-				Log.d("HijriClock", ids);//logging
+				//String ids="parent:"+parentid+" status:"+statusid;//logging
+				//Log.d("HijriClock", ids);//logging
 				if(parentid==statusid){//Check if the parent is the status bar
 				String date = HijriCalendar.getDate(null, pref.getBoolean(Keys.SHOW_DATE, true),
 						pref.getBoolean(Keys.SHOW_MONTH, true), pref.getBoolean(Keys.SHOW_YEAR, true),
