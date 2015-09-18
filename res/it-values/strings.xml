@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Orologio Hijri</string>
+    <string name="title_activity_hijri__clock">Orologio Hijri</string>
+    <string name="hello_world">Ciao Mondo!</string>
+    <string name="show_date">Mostra data</string>
+    <string name="show_month">Mostra mese</string>
+    <string name="show_year">Mostra anno</string>
+    <string name="show_month_as_number">Mostra mese come numero</string>
+    <string name="show_slash">Mostra / tra giorno, mese e anno</string>
+    <string name="show_before_clock">Mostra prima orologio</string>
+    <string name="apply">Applica</string>
+    <string name="xda">XDA Thread</string>
+    <string name="more">Altro su Xposed Mods</string>
+    <string name="offset">Definire un offset di spingere in avanti la data. Utilizzare i numeri negativi per spingerlo indietro</string>
+    <string name="day_offset">Giorno</string>
+    <string name="month_offset">Mese</string>
+    <string name="arabic_words">Utilizzare l\'arabo per il testo</string>
+    <string name="arabic_numbers">Utilizzare l\'arabo per i numeri</string>
+    <string name="show_in_statubar">Mostra sulla barra di stato</string>
+
+</resources>
