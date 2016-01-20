@@ -15,7 +15,7 @@ public final class HijriCalendar {
 	public final static String[] WEEKDAYS = { "", "Ahad", "Ithnin", "Thulatha", "Arbaa", "Khams", "Jumuah", "Sabt" };
 	public final static String[] MONTHS = { "", "Muharram", "Safar", "Rabiul Awwal", "Rabiul Akhir",
 		"Jumadal Ula", "Jumadal Akhira", "Rajab", "Shaaban", "Ramadhan", "Shawwal", "Dhulqaada", "Dhulhijja" };
-	public final static String[] MONTHS_ARABIC = { "", "المحرّم", "صفر", "ربيع الأوّل", "ربيع الآخ",
+	public final static String[] MONTHS_ARABIC = { "", "المحرّم", "صفر", "ربيع الأوّل", "ربيع الآخر",
 		"جمادى الأولى", "جمادى الآخرة", "رجب", "شعبان", "رمضان", "شوّال", "ذو القعدة", "ذو الحجّة" };
 
 	public final static double[] UMMALQURA_DAT = {
